@@ -1,0 +1,18 @@
+{
+  "name": "beauty-studio-app",
+  "version": "1.0.0",
+  "description": "This is beauty studio app",
+  "scripts": {
+    "server:watch": "npm run start:dev --prefix server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bjakub/beauty-studio-app.git"
+  },
+  "author": "Jakub Bialecki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bjakub/beauty-studio-app/issues"
+  },
+  "homepage": "https://github.com/bjakub/beauty-studio-app#readme"
+}
