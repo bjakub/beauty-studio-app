@@ -1,10 +1,15 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { EnvironmentVariablesConfig } from './config/environment-variables/EnvironmentVariables.config';
+import { ConfigModule } from '@nestjs/config';
+import { validationSchema } from './configuration/validation';
 
 @Module({
-  imports: [EnvironmentVariablesConfig],
+  imports: [
+    ConfigModule.forRoot({
+      validationSchema,
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
