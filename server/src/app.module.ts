@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { validationSchema } from './configuration/validation';
-import { UsersModule } from '../users/Users.module';
+import { UsersModule } from './users/Users.module';
 
 @Module({
   imports: [
