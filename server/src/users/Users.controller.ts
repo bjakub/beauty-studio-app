@@ -12,10 +12,10 @@ import {
 import { UsersService } from './Users.service';
 import { Prisma, User as UserModel } from '@prisma/client';
 import { PrismaExceptionFilter } from '../../filters/prisma-exception/PrismaException.filter';
-import { createUserSchema } from '../../../common/dto/Users';
+import { createUserSchema } from '@shared/dto/Users';
 import { ZodValidationPipe } from '../../pipes/zod-validation/ZodValidation.pipe';
 
-// TODO: Ogarnij tak, zeby pliki z `common` były ogarnianie tutaj :D
+// TODO: Ogarnij filtr na błędy z ZOD, żeby zwracał 400 z odpowiednim komunikatem podobnym do filtra z Prisma :D
 
 @UseFilters(new PrismaExceptionFilter())
 @Controller('users')
