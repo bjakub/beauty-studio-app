@@ -1,6 +1,7 @@
 import { ArgumentsHost, Catch, ExceptionFilter, Logger } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { Response } from 'express';
+import { PrismaException } from '@shared/errors/PrismaException';
 
 type ExceptionType =
   | Prisma.PrismaClientKnownRequestError
@@ -24,9 +25,8 @@ export class PrismaExceptionFilter implements ExceptionFilter {
 
     this.logger.error(exception.message);
 
-    response.status(500).json({
-      type: 'PrismaException',
-      timestamp: new Date().toISOString(),
-    });
+    response
+      .status(400)
+      .json(new PrismaException('Error during database operation'));
   }
 }

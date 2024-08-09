@@ -8,7 +8,7 @@ export const userRolesSchema = z.tuple([
 
 export const createUserSchema = z.object({
   email: z.string().email(),
-  role: userRolesSchema,
+  role: userRolesSchema.optional(),
   password: z.string().min(8).max(20),
   name: z.string().min(1).max(50).optional(),
   surname: z.string().min(1).max(100).optional(),
