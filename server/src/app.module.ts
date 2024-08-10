@@ -1,18 +1,29 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { validationSchema } from './configuration/validation';
-import { UsersModule } from './users/Users.module';
+import { CryptoService } from './services/crypto/Crypto.service';
+import { PrismaService } from './services/prisma/Prisma.service';
+import { UsersController } from './modules/users/Users.controller';
+import { AuthController } from './modules/auth/Auth.controller';
+import { UsersService } from './services/users/Users.service';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       validationSchema,
     }),
-    UsersModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [UsersController, AuthController],
+  providers: [
+    UsersService,
+    PrismaService,
+    ConfigService,
+    {
+      provide: CryptoService,
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) =>
+        new CryptoService(configService),
+    },
+  ],
 })
 export class AppModule {}

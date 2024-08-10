@@ -6,19 +6,21 @@ import {
   Param,
   ParseIntPipe,
   Post,
-  UseFilters,
   UsePipes,
 } from '@nestjs/common';
-import { UsersService } from './Users.service';
+import { UsersService } from '../../services/users/Users.service';
 import { Prisma, User as UserModel } from '@prisma/client';
 import { createUserSchema } from '@shared/dto/Users';
 import { ZodValidationPipe } from '../../pipes/zod-validation/ZodValidation.pipe';
+import { UsersFacade } from './Users.facade';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  private INCLUDE_STATIC: Prisma.UserSelect = {
+  private readonly usersFacade = new UsersFacade(this.usersService);
+
+  private USER_SELECT: Prisma.UserSelect = {
     email: true,
     role: true,
     name: true,
@@ -29,33 +31,19 @@ export class UsersController {
 
   @Get()
   async getAllUsers(): Promise<UserModel[]> {
-    const users = await this.usersService.findUsers({
-      select: this.INCLUDE_STATIC,
-    });
-
-    if (users.length === 0) {
-      throw new NotFoundException(`No users found`);
-    }
-
-    return users;
+    return this.usersFacade.getAllUsers();
   }
 
   @Get('/:id')
   async getUserById(
     @Param('id', ParseIntPipe) id: number,
   ): Promise<UserModel | null> {
-    const user = await this.usersService.findUser({ id }, this.INCLUDE_STATIC);
-
-    if (!user) {
-      throw new NotFoundException(`User with id ${id} not found`);
-    }
-
-    return user;
+    return this.usersFacade.getUserById(id);
   }
 
   @Post()
   @UsePipes(new ZodValidationPipe(createUserSchema))
   async createUser(@Body() data: Prisma.UserCreateInput): Promise<UserModel> {
-    return this.usersService.createUser(data, this.INCLUDE_STATIC);
+    return this.usersService.createUser(data, this.USER_SELECT);
   }
 }
