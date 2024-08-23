@@ -36,4 +36,8 @@ export class UsersFacade {
 
     return user;
   }
+
+  async createUser(user: Prisma.UserCreateInput): Promise<User> {
+    return this.usersService.createUser(user, this.USER_SELECT);
+  }
 }

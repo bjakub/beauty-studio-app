@@ -2,7 +2,6 @@ import {
   Body,
   Controller,
   Get,
-  NotFoundException,
   Param,
   ParseIntPipe,
   Post,
@@ -20,15 +19,6 @@ export class UsersController {
 
   private readonly usersFacade = new UsersFacade(this.usersService);
 
-  private USER_SELECT: Prisma.UserSelect = {
-    email: true,
-    role: true,
-    name: true,
-    id: true,
-    surname: true,
-    createdAt: true,
-  };
-
   @Get()
   async getAllUsers(): Promise<UserModel[]> {
     return this.usersFacade.getAllUsers();
@@ -43,7 +33,7 @@ export class UsersController {
 
   @Post()
   @UsePipes(new ZodValidationPipe(createUserSchema))
-  async createUser(@Body() data: Prisma.UserCreateInput): Promise<UserModel> {
-    return this.usersService.createUser(data, this.USER_SELECT);
+  async createUser(@Body() user: Prisma.UserCreateInput): Promise<UserModel> {
+    return this.usersFacade.createUser(user);
   }
 }

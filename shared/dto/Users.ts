@@ -10,9 +10,8 @@ export const createUserSchema = z.object({
   email: z.string().email(),
   role: userRolesSchema.optional(),
   password: z.string().min(8).max(20),
-  name: z.string().min(1).max(50).optional(),
-  surname: z.string().min(1).max(100).optional(),
+  name: z.string().max(50).optional(),
+  surname: z.string().max(100).optional(),
 });
 
-export type CreateUserDTO = z.infer<typeof createUserSchema>;
 export type UserRoles = z.infer<typeof userRolesSchema>;
