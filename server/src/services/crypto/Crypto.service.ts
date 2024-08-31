@@ -1,5 +1,5 @@
 import { ConfigService } from '@nestjs/config';
-import { genSalt, hash } from 'bcrypt';
+import { genSalt, hash, compare } from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 
 export class CryptoService {
@@ -11,6 +11,14 @@ export class CryptoService {
       return hash(value, salt);
     } catch (e) {
       throw new InternalServerErrorException('Error hashing value');
+    }
+  }
+
+  async compare(value: string, comparedValue: string): Promise<boolean> {
+    try {
+      return await compare(value, comparedValue);
+    } catch (e) {
+      throw new InternalServerErrorException('Error during comparing');
     }
   }
 }

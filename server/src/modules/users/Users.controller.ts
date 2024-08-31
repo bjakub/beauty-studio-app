@@ -7,7 +7,7 @@ import {
   Post,
   UsePipes,
 } from '@nestjs/common';
-import { UsersService } from '../../services/users/Users.service';
+import { UsersService } from './Users.service';
 import { Prisma, User as UserModel } from '@prisma/client';
 import { createUserSchema } from '@shared/dto/Users';
 import { ZodValidationPipe } from '../../pipes/zod-validation/ZodValidation.pipe';

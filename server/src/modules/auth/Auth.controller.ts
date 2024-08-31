@@ -1,25 +1,28 @@
 import {
-  Body,
   Controller,
   HttpCode,
   HttpStatus,
   Post,
+  Req,
+  UseGuards,
   UsePipes,
 } from '@nestjs/common';
-import { UsersService } from '../../services/users/Users.service';
-import { AuthFacade } from './Auth.facade';
 import { ZodValidationPipe } from '../../pipes/zod-validation/ZodValidation.pipe';
-import { loginUserSchema, LoginUserDTO } from '@shared/dto/Auth';
+import { loginUserSchema } from '@shared/dto/Auth';
+import { LocalAuthGuard } from './strategy/local/local.guard';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly usersService: UsersService) {}
-  private readonly authFacade = new AuthFacade(this.usersService);
+  constructor() {}
 
   @HttpCode(HttpStatus.OK)
   @Post('login')
+  @UseGuards(LocalAuthGuard)
   @UsePipes(new ZodValidationPipe(loginUserSchema))
-  async login(@Body() credentials: LoginUserDTO): Promise<void> {
-    return this.authFacade.signIn(credentials);
+  async login(@Req() req: Request): Promise<void> {
+    console.log('req');
+    console.log(req);
+
+    return;
   }
 }

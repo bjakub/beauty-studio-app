@@ -6,10 +6,12 @@ export const userRolesSchema = z.tuple([
   z.literal('WORKER'),
 ]);
 
+export const passwordSchema = z.string().min(8).max(20)
+
 export const createUserSchema = z.object({
   email: z.string().email(),
   role: userRolesSchema.optional(),
-  password: z.string().min(8).max(20),
+  password: passwordSchema,
   name: z.string().max(50).optional(),
   surname: z.string().max(100).optional(),
 });

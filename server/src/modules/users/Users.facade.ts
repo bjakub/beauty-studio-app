@@ -1,6 +1,6 @@
 import { NotFoundException } from '@nestjs/common';
 import { User } from '.prisma/client';
-import { UsersService } from '../../services/users/Users.service';
+import { UsersService } from './Users.service';
 import { Prisma } from '@prisma/client';
 
 export class UsersFacade {
