@@ -12,12 +12,19 @@ import { Prisma, User as UserModel } from '@prisma/client';
 import { createUserSchema } from '@shared/dto/Users';
 import { ZodValidationPipe } from '../../pipes/zod-validation/ZodValidation.pipe';
 import { UsersFacade } from './Users.facade';
+import { CryptoService } from '../../services/crypto/Crypto.service';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private cryptoService: CryptoService,
+  ) {}
 
-  private readonly usersFacade = new UsersFacade(this.usersService);
+  private readonly usersFacade = new UsersFacade(
+    this.usersService,
+    this.cryptoService,
+  );
 
   @Get()
   async getAllUsers(): Promise<UserModel[]> {

@@ -2,6 +2,7 @@ import { NotFoundException } from '@nestjs/common';
 import { User } from '.prisma/client';
 import { UsersService } from './Users.service';
 import { Prisma } from '@prisma/client';
+import { CryptoService } from '../../services/crypto/Crypto.service';
 
 export class UsersFacade {
   private readonly USER_SELECT: Prisma.UserSelect = {
@@ -13,7 +14,10 @@ export class UsersFacade {
     createdAt: true,
   };
 
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private cryptoService: CryptoService,
+  ) {}
 
   async getAllUsers(): Promise<User[]> {
     const users = await this.usersService.findUsers({
@@ -38,6 +42,9 @@ export class UsersFacade {
   }
 
   async createUser(user: Prisma.UserCreateInput): Promise<User> {
-    return this.usersService.createUser(user, this.USER_SELECT);
+    const hashedPassword = await this.cryptoService.hash(user.password);
+    const newUser = { ...user, password: hashedPassword };
+
+    return this.usersService.createUser(newUser, this.USER_SELECT);
   }
 }

@@ -5,4 +5,5 @@
 
 # TODO
 
-## Build JWT logic and add to sign in logic
+## Complete JWT logic for login
+## Add register logic with JWT return
