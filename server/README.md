@@ -5,5 +5,4 @@
 
 # TODO
 
-## Complete JWT logic for login
-## Add register logic with JWT return
+## Handle JWT during user request (https://docs.nestjs.com/recipes/passport#implementing-passport-jwt)
