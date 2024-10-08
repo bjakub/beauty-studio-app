@@ -5,4 +5,5 @@
 
 # TODO
 
-## Handle JWT during user request (https://docs.nestjs.com/recipes/passport#implementing-passport-jwt)
+- Add endpoint from register user
+- Add logic to protect endpoint by roles (USER, ADMIN, WORKER)
