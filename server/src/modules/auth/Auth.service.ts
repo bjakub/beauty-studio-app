@@ -4,6 +4,7 @@ import { CryptoService } from '../../services/crypto/Crypto.service';
 import { omit } from 'lodash';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { UserJwtPayload, UserWithoutPassword } from './Auth.types';
 
 @Injectable()
 export class AuthService {
@@ -16,7 +17,7 @@ export class AuthService {
   async validateUser(
     email: string,
     password: string,
-  ): Promise<Omit<User, 'password'> | null> {
+  ): Promise<UserWithoutPassword | null> {
     const user = await this.usersService.findUser({
       email,
     });
@@ -29,7 +30,11 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const payload = { sub: user.id };
+    const payload: UserJwtPayload = {
+      userId: user.id,
+      role: user.role,
+      username: user.name,
+    };
 
     return {
       access_token: this.jwtService.sign(payload),

@@ -13,11 +13,13 @@ import { loginUserSchema } from '@shared/dto/Auth';
 import { LocalAuthGuard } from './strategy/local/local.guard';
 import { User } from '@prisma/client';
 import { AuthService } from './Auth.service';
+import { SkipAuth } from '../../metadatas/SkipAuth.metadata';
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @SkipAuth()
   @HttpCode(HttpStatus.OK)
   @Post('login')
   @UseGuards(LocalAuthGuard)
