@@ -10,7 +10,6 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { UserJwtPayload, UserWithoutPassword } from './Auth.types';
 import { RegisterUserDTO } from '@shared/dto/Auth';
-import { UserRoles } from '@shared/dto/Users';
 
 @Injectable()
 export class AuthService {
@@ -70,7 +69,7 @@ export class AuthService {
 
       const payload: UserJwtPayload = {
         userId,
-        role: role as unknown as UserRoles,
+        role,
       };
 
       return {

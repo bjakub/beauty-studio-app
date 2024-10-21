@@ -22,11 +22,11 @@ import { User } from '@prisma/client';
 import { AuthService } from './Auth.service';
 import { SkipAuth } from '../../metadatas/SkipAuth.metadata';
 
+@SkipAuth()
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @SkipAuth()
   @HttpCode(HttpStatus.OK)
   @Post('login')
   @UseGuards(LocalAuthGuard)
@@ -37,7 +37,6 @@ export class AuthController {
     return this.authService.login(req.user);
   }
 
-  @SkipAuth()
   @HttpCode(HttpStatus.CREATED)
   @Post('register')
   @UsePipes(new ZodValidationPipe(RegisterUserSchema))

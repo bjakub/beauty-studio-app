@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
-export const UserRolesSchema = z.tuple([
+export const UserRolesSchema = z.union([
   z.literal('ADMIN'),
   z.literal('USER'),
-  z.literal('WORKER'),
+  z.literal('WORKER')
 ]);
 
 export const PasswordSchema = z.string().min(8).max(20)
@@ -16,4 +16,4 @@ export const CreateUserSchema = z.object({
   surname: z.string().max(100).optional(),
 });
 
-export type UserRoles = z.infer<typeof UserRolesSchema>;
+export type UserRole = z.infer<typeof UserRolesSchema>;

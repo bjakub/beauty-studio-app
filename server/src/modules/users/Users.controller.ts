@@ -13,7 +13,9 @@ import { CreateUserSchema } from '@shared/dto/Users';
 import { ZodValidationPipe } from '../../pipes/zod-validation/ZodValidation.pipe';
 import { UsersFacade } from './Users.facade';
 import { CryptoService } from '../../services/crypto/Crypto.service';
+import { Roles } from '../../decorators/Roles.decorator';
 
+@Roles('ADMIN')
 @Controller('users')
 export class UsersController {
   constructor(

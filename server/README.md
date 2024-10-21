@@ -5,5 +5,4 @@
 
 # TODO
 
-- Add endpoint from register user
-- Add logic to protect endpoint by roles (USER, ADMIN, WORKER)
+- Change Logger to add path, params and more information (IMPORTANT! We need to extend current nest logger)
