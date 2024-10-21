@@ -5,4 +5,5 @@
 
 # TODO
 
-- Change Logger to add path, params and more information (IMPORTANT! We need to extend current nest logger)
+- Let's paint database schema for reservation related to user
+- Create above schema in code
