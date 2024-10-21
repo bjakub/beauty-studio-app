@@ -13,7 +13,7 @@ import { CreateUserSchema } from '@shared/dto/Users';
 import { ZodValidationPipe } from '../../pipes/zod-validation/ZodValidation.pipe';
 import { UsersFacade } from './Users.facade';
 import { CryptoService } from '../../services/crypto/Crypto.service';
-import { Roles } from '../../decorators/Roles.decorator';
+import { Roles } from '../../metadatas/Roles.metadata';
 
 @Roles('ADMIN')
 @Controller('users')
