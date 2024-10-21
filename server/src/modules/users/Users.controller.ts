@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './Users.service';
 import { Prisma, User as UserModel } from '@prisma/client';
-import { createUserSchema } from '@shared/dto/Users';
+import { CreateUserSchema } from '@shared/dto/Users';
 import { ZodValidationPipe } from '../../pipes/zod-validation/ZodValidation.pipe';
 import { UsersFacade } from './Users.facade';
 import { CryptoService } from '../../services/crypto/Crypto.service';
@@ -39,7 +39,7 @@ export class UsersController {
   }
 
   @Post()
-  @UsePipes(new ZodValidationPipe(createUserSchema))
+  @UsePipes(new ZodValidationPipe(CreateUserSchema))
   async createUser(@Body() user: Prisma.UserCreateInput): Promise<UserModel> {
     return this.usersFacade.createUser(user);
   }
