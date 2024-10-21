@@ -17,7 +17,7 @@ type ExceptionType =
   Prisma.PrismaClientRustPanicError,
 )
 export class PrismaExceptionFilter implements ExceptionFilter {
-  private readonly logger = new Logger();
+  private readonly logger = new Logger(PrismaExceptionFilter.name);
 
   catch(exception: ExceptionType, host: ArgumentsHost) {
     const ctx = host.switchToHttp();

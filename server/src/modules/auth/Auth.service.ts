@@ -13,7 +13,7 @@ import { RegisterUserDTO } from '@shared/dto/Auth';
 
 @Injectable()
 export class AuthService {
-  private readonly logger = new Logger();
+  private readonly logger = new Logger(AuthService.name);
 
   constructor(
     private usersService: UsersService,

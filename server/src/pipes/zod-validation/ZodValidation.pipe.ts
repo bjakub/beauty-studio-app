@@ -3,7 +3,7 @@ import { ZodSchema } from 'zod';
 import { ZodException } from '@shared/errors/ZodException';
 
 export class ZodValidationPipe implements PipeTransform {
-  private readonly logger = new Logger();
+  private readonly logger = new Logger(ZodValidationPipe.name);
 
   constructor(private schema: ZodSchema) {}
 

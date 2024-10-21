@@ -10,7 +10,7 @@ import { ROLES_KEY } from '../../../metadatas/Roles.metadata';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
-  private readonly logger = new Logger();
+  private readonly logger = new Logger(RolesGuard.name);
 
   constructor(private reflector: Reflector) {}
 
@@ -21,7 +21,7 @@ export class RolesGuard implements CanActivate {
     );
 
     if (!requiredRoles) {
-      this.logger.log('Checking role omitted!');
+      this.logger.warn('Checking role omitted!');
       return true;
     }
 

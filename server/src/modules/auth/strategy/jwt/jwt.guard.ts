@@ -10,7 +10,7 @@ import { SKIP_AUTH_KEY } from '../../../../metadatas/SkipAuth.metadata';
 
 @Injectable()
 export class JwtGuard extends AuthGuard('jwt') {
-  private readonly logger = new Logger();
+  private readonly logger = new Logger(JwtGuard.name);
 
   constructor(private reflector: Reflector) {
     super();
