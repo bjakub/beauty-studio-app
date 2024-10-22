@@ -2,8 +2,10 @@
 
 ## About .env file with information about environment variables
 
+# DB visualization
+https://drawsql.app/teams/my-team-1878/diagrams/beauty-studio
 
 # TODO
 
-- Let's paint database schema for reservation related to user
-- Create above schema in code
+- Add new table to prisma schema
+- Implement this shit :D 
