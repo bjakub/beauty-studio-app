@@ -7,5 +7,11 @@ https://drawsql.app/teams/my-team-1878/diagrams/beauty-studio
 
 # TODO
 
-- Add new table to prisma schema
+### Current task
+
+- Let's think how to implement DB in way where every employee has different price for service
 - Implement this shit :D 
+
+### Before deploy
+
+- Add all security from SECURITY chapter(Helmet[CSP], CORS, CSRF Protection, Rate limiting) - https://docs.nestjs.com/security/helmet
