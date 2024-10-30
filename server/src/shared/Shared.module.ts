@@ -1,7 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { CryptoService } from '../services/crypto/Crypto.service';
-import { validationSchema } from '../configuration/validation';
+import { CryptoService } from './services/crypto/Crypto.service';
+import { validationSchema } from '../config/validation';
 
 @Global()
 @Module({
@@ -21,4 +21,4 @@ import { validationSchema } from '../configuration/validation';
   ],
   exports: [ConfigService, CryptoService],
 })
-export class GlobalModule {}
+export class SharedModule {}

@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { PrismaExceptionFilter } from './filters/prisma-exception/PrismaException.filter';
+import { PrismaExceptionFilter } from './common/filters/prisma-exception/PrismaException.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });

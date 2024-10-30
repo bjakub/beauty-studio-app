@@ -9,8 +9,7 @@ https://drawsql.app/teams/my-team-1878/diagrams/beauty-studio
 
 ### Current task
 
-- Let's think how to implement DB in way where every employee has different price for service
-- Implement this shit :D 
+- Adjust changes from DB migration in code (client does not exist)
 
 ### Before deploy
 

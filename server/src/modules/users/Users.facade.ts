@@ -2,7 +2,7 @@ import { NotFoundException } from '@nestjs/common';
 import { User } from '.prisma/client';
 import { UsersService } from './Users.service';
 import { Prisma } from '@prisma/client';
-import { CryptoService } from '../../services/crypto/Crypto.service';
+import { CryptoService } from '../../shared/services/crypto/Crypto.service';
 
 export class UsersFacade {
   private readonly USER_SELECT: Prisma.UserSelect = {

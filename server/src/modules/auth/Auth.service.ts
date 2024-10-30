@@ -1,5 +1,5 @@
 import { UsersService } from '../users/Users.service';
-import { CryptoService } from '../../services/crypto/Crypto.service';
+import { CryptoService } from '../../shared/services/crypto/Crypto.service';
 import { omit } from 'lodash';
 import {
   ConflictException,

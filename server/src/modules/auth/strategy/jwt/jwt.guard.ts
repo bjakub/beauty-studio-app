@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Reflector } from '@nestjs/core';
-import { SKIP_AUTH_KEY } from '../../../../metadatas/SkipAuth.metadata';
+import { SKIP_AUTH_KEY } from '../../../../common/metadatas/SkipAuth.metadata';
 
 @Injectable()
 export class JwtGuard extends AuthGuard('jwt') {

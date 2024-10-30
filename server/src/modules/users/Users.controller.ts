@@ -10,10 +10,10 @@ import {
 import { UsersService } from './Users.service';
 import { Prisma, User as UserModel } from '@prisma/client';
 import { CreateUserSchema } from '@shared/dto/Users';
-import { ZodValidationPipe } from '../../pipes/zod-validation/ZodValidation.pipe';
+import { ZodValidationPipe } from '../../common/pipes/zod-validation/ZodValidation.pipe';
 import { UsersFacade } from './Users.facade';
-import { CryptoService } from '../../services/crypto/Crypto.service';
-import { Roles } from '../../metadatas/Roles.metadata';
+import { CryptoService } from '../../shared/services/crypto/Crypto.service';
+import { Roles } from '../../common/metadatas/Roles.metadata';
 
 @Roles('ADMIN')
 @Controller('users')
