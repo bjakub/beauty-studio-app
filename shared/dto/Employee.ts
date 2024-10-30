@@ -17,9 +17,8 @@ export const CreateEmployeeSchema = z.object({
   username: z.string().max(50),
   password: PasswordSchema,
   isActive: z.boolean(),
-  role: EmployeeRuleSchema,
   experience: EmployeeExperienceSchema,
 });
 
 export type EmployeeRole = z.infer<typeof EmployeeRuleSchema>;
-export type EmployeeExperience = z.infer<typeof EmployeeExperienceSchema>;
+export type CreateEmployeeDTO = z.infer<typeof CreateEmployeeSchema>;
