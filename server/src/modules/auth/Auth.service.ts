@@ -1,4 +1,3 @@
-import { UsersService } from '../users/Users.service';
 import { CryptoService } from '../../shared/services/crypto/Crypto.service';
 import { omit } from 'lodash';
 import {
@@ -8,38 +7,42 @@ import {
   Logger,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UserJwtPayload, UserWithoutPassword } from './Auth.types';
-import { RegisterUserDTO } from '@shared/dto/Auth';
+import { EmployeeJwtPayload, EmployeeWithoutPassword } from './Auth.types';
+import { RegisterEmployeeDTO } from '@shared/dto/Auth';
+import { EmployeeService } from '../../database/repositories/employee/Employee.service';
 
 @Injectable()
 export class AuthService {
   private readonly logger = new Logger(AuthService.name);
 
   constructor(
-    private usersService: UsersService,
+    private employeeService: EmployeeService,
     private cryptoService: CryptoService,
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(
-    email: string,
+  async validateEmployee(
+    username: string,
     password: string,
-  ): Promise<UserWithoutPassword | null> {
-    const user = await this.usersService.findUser({
-      email,
+  ): Promise<EmployeeWithoutPassword | null> {
+    const employee = await this.employeeService.find({
+      username,
     });
 
-    if (user && (await this.cryptoService.compare(password, user.password))) {
-      return omit(user, 'password');
+    if (
+      employee &&
+      (await this.cryptoService.compare(password, employee.password))
+    ) {
+      return omit(employee, 'password');
     }
 
     return null;
   }
 
-  async login(user: any) {
-    const payload: UserJwtPayload = {
-      userId: user.id,
-      role: user.role,
+  async login(employee: any) {
+    const payload: EmployeeJwtPayload = {
+      employeeId: employee.id,
+      role: employee.role,
     };
 
     return {
@@ -47,28 +50,38 @@ export class AuthService {
     };
   }
 
-  async register(registeredUser: RegisterUserDTO) {
-    const user = await this.usersService.findUser({
-      email: registeredUser.email,
+  async register(registeredEmployee: RegisterEmployeeDTO) {
+    const employee = await this.employeeService.find({
+      username: registeredEmployee.username,
     });
 
-    if (user) {
-      throw new ConflictException('User with specified email already exists!');
+    if (employee) {
+      throw new ConflictException(
+        'Employee with specified username already exists!',
+      );
     }
 
     try {
-      const hashedPassword = await this.cryptoService.hash(
-        registeredUser.password,
-      );
+      const {
+        username,
+        experience,
+        role: employeeRole,
+        isActive,
+        password,
+      } = registeredEmployee;
 
-      const { id: userId, role } = await this.usersService.createUser({
-        email: registeredUser.email,
+      const hashedPassword = await this.cryptoService.hash(password);
+
+      const { id: employeeId, role } = await this.employeeService.create({
+        username,
         password: hashedPassword,
-        role: 'USER',
+        role: employeeRole,
+        experience,
+        isActive,
       });
 
-      const payload: UserJwtPayload = {
-        userId,
+      const payload: EmployeeJwtPayload = {
+        employeeId,
         role,
       };
 

@@ -1,5 +1,6 @@
-import { UserRole } from '@shared/dto/Users';
 import { SetMetadata } from '@nestjs/common';
+import { EmployeeRole } from '@prisma/client';
 
 export const ROLES_KEY = 'roles';
-export const Roles = (...roles: UserRole[]) => SetMetadata(ROLES_KEY, roles);
+export const Roles = (...roles: EmployeeRole[]) =>
+  SetMetadata(ROLES_KEY, roles);

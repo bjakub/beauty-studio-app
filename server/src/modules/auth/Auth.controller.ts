@@ -13,12 +13,11 @@ import { ZodValidationPipe } from '../../common/pipes/zod-validation/ZodValidati
 import {
   AuthLoginAPIResponse,
   AuthRegisterAPIResponse,
-  LoginUserSchema,
-  RegisterUserDTO,
-  RegisterUserSchema,
+  LoginEmployeeSchema,
+  RegisterEmployeeDTO,
+  RegisterEmployeeSchema,
 } from '@shared/dto/Auth';
 import { LocalAuthGuard } from './strategy/local/local.guard';
-import { User } from '@prisma/client';
 import { AuthService } from './Auth.service';
 import { SkipAuth } from '../../common/metadatas/SkipAuth.metadata';
 
@@ -30,18 +29,16 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Post('login')
   @UseGuards(LocalAuthGuard)
-  @UsePipes(new ZodValidationPipe(LoginUserSchema))
-  async login(
-    @Req() req: Request<{ user: Omit<User, 'password'> }>,
-  ): Promise<AuthLoginAPIResponse> {
-    return this.authService.login(req.user);
+  @UsePipes(new ZodValidationPipe(LoginEmployeeSchema))
+  async login(@Req() req: Request): Promise<AuthLoginAPIResponse> {
+    return this.authService.login(req.employee);
   }
 
   @HttpCode(HttpStatus.CREATED)
   @Post('register')
-  @UsePipes(new ZodValidationPipe(RegisterUserSchema))
+  @UsePipes(new ZodValidationPipe(RegisterEmployeeSchema))
   async register(
-    @Body() body: RegisterUserDTO,
+    @Body() body: RegisterEmployeeDTO,
   ): Promise<AuthRegisterAPIResponse> {
     return this.authService.register(body);
   }

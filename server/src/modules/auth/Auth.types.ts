@@ -1,9 +1,9 @@
-import { UserRole } from '@shared/dto/Users';
-import { User } from '.prisma/client';
+import { Employee } from '.prisma/client';
+import { EmployeeRole } from '@shared/dto/Employee';
 
-export type UserJwtPayload = {
-  userId: number;
-  role: UserRole;
+export type EmployeeJwtPayload = {
+  employeeId: number;
+  role: EmployeeRole;
 };
 
-export type UserWithoutPassword = Omit<User, 'password'>;
+export type EmployeeWithoutPassword = Omit<Employee, 'password'>;

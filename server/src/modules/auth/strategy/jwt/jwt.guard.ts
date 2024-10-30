@@ -29,8 +29,8 @@ export class JwtGuard extends AuthGuard('jwt') {
     return super.canActivate(context);
   }
 
-  handleRequest(err: any, user: any, info: any, context: ExecutionContext) {
-    if (err || !user) {
+  handleRequest(err: any, employee: any, info: any, context: ExecutionContext) {
+    if (err || !employee) {
       const message = info?.message ?? 'Unauthorized';
 
       this.logger.error(this.errorMessage(context, message));
@@ -43,7 +43,7 @@ export class JwtGuard extends AuthGuard('jwt') {
       );
     }
 
-    return user;
+    return employee;
   }
 
   private errorMessage(context: ExecutionContext, message: string): string {

@@ -5,8 +5,8 @@ import {
   Logger,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { UserRole } from '@shared/dto/Users';
 import { ROLES_KEY } from '../../../common/metadatas/Roles.metadata';
+import { EmployeeRole } from '@shared/dto/Employee';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -15,7 +15,7 @@ export class RolesGuard implements CanActivate {
   constructor(private reflector: Reflector) {}
 
   canActivate(context: ExecutionContext): boolean {
-    const requiredRoles = this.reflector.getAllAndOverride<UserRole[]>(
+    const requiredRoles = this.reflector.getAllAndOverride<EmployeeRole[]>(
       ROLES_KEY,
       [context.getHandler(), context.getClass()],
     );
@@ -25,13 +25,13 @@ export class RolesGuard implements CanActivate {
       return true;
     }
 
-    const { user } = context.switchToHttp().getRequest();
+    const { employee } = context.switchToHttp().getRequest();
 
-    if (!user) {
-      this.logger.error('Cannot find user during checking role!');
+    if (!employee) {
+      this.logger.error('Cannot find employee during checking role!');
       return false;
     }
 
-    return requiredRoles.some((role) => user.role === role);
+    return requiredRoles.some((role) => employee.role === role);
   }
 }

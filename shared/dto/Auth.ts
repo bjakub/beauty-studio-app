@@ -1,17 +1,17 @@
 import { z } from 'zod';
-import { CreateUserSchema, PasswordSchema } from './Users';
+import { CreateEmployeeSchema, PasswordSchema } from './Employee'
 
-export const LoginUserSchema = z.object({
-  email: z.string().email(),
+export const LoginEmployeeSchema = z.object({
+  username: z.string().min(3).max(50),
   password: z.string().min(8).max(20),
 });
 
-export const RegisterUserSchema = CreateUserSchema.extend({ confirmPassword: PasswordSchema}).refine(data => data.password === data.confirmPassword, {
+export const RegisterEmployeeSchema = CreateEmployeeSchema.extend({ confirmPassword: PasswordSchema}).refine(data => data.password === data.confirmPassword, {
   message: 'Passwords do not match',
 });
 
 
-export type RegisterUserDTO = z.infer<typeof RegisterUserSchema>;
+export type RegisterEmployeeDTO = z.infer<typeof RegisterEmployeeSchema>;
 
 export interface AuthRegisterAPIResponse {
   accessToken: string;

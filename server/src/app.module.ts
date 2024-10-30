@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { SharedModule } from './shared/Shared.module';
-import { CoreModule } from './modules/Core.module';
+import { AuthModule } from './modules/auth';
 
 @Module({
-  imports: [SharedModule, CoreModule],
+  imports: [SharedModule, AuthModule],
 })
 export class AppModule {}
