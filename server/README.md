@@ -9,7 +9,7 @@ https://drawsql.app/teams/my-team-1878/diagrams/beauty-studio
 
 ### Current task
 
-- Adjust changes from DB migration in code (client does not exist)
+- Add all operation to employee service (getAll, getOne, create, delete)
 
 ### Before deploy
 
