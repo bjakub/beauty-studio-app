@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { UserDetailsSchema } from './UserDetails';
 
 export const EmployeeRuleSchema = z.union([
   z.literal("OWNER"),
@@ -18,7 +19,15 @@ export const CreateEmployeeSchema = z.object({
   password: PasswordSchema,
   isActive: z.boolean(),
   experience: EmployeeExperienceSchema,
+  userDetails: UserDetailsSchema.optional()
+});
+
+export const ChangeEmployeeStatusSchema = z.object({
+  id: z.number(),
+  isActive: z.boolean()
 });
 
 export type EmployeeRole = z.infer<typeof EmployeeRuleSchema>;
+export type EmployeeExperience = z.infer<typeof EmployeeExperienceSchema>;
 export type CreateEmployeeDTO = z.infer<typeof CreateEmployeeSchema>;
+export type ChangeEmployeeStatusDTO = z.infer<typeof ChangeEmployeeStatusSchema>;

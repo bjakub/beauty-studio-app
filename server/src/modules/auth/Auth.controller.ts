@@ -9,10 +9,11 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 import { ZodValidationPipe } from '../../common/pipes/zod-validation/ZodValidation.pipe';
-import { AuthLoginAPIResponse, LoginEmployeeSchema } from '@shared/dto/Auth';
+import { LoginEmployeeSchema } from '@shared/dto/Auth';
 import { LocalAuthGuard } from './strategy/local/local.guard';
 import { AuthService } from './Auth.service';
 import { SkipAuth } from '../../common/metadatas/SkipAuth.metadata';
+import { AuthLoginAPI } from '@shared/modules/Auth';
 
 @SkipAuth()
 @Controller('auth')
@@ -23,7 +24,7 @@ export class AuthController {
   @Post('login')
   @UseGuards(LocalAuthGuard)
   @UsePipes(new ZodValidationPipe(LoginEmployeeSchema))
-  async login(@Req() req: Request): Promise<AuthLoginAPIResponse> {
+  async login(@Req() req: Request): Promise<AuthLoginAPI> {
     return this.authService.login(req.employee);
   }
 }
