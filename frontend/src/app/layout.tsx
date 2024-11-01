@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
-import { ThemeProvider } from '@mui/material/styles';
-import { theme } from '@/config/theme';
-import CssBaseline from '@mui/material/CssBaseline';
-import { ReactNode } from 'react';
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from "@/config/theme";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,18 +15,15 @@ interface RootLayoutProps {
 }
 
 const RootLayout = ({ children }: RootLayoutProps) => (
-    <html lang="en">
-      <CssBaseline/>
+  <html lang="en">
+    <CssBaseline />
 
-      <body>
-        <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
-            {children}
-          </ThemeProvider>
-        </AppRouterCacheProvider>
-      </body>
-    </html>
-  );
+    <body>
+      <AppRouterCacheProvider>
+        <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      </AppRouterCacheProvider>
+    </body>
+  </html>
+);
 
 export default RootLayout;
-
