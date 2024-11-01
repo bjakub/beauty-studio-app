@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "This is beauty studio app",
   "scripts": {
-    "server:watch": "npm run start:dev --prefix server"
+    "server:watch": "npm run start:dev --prefix server",
+    "frontend:watch": "npm run dev --prefix frontend"
   },
   "repository": {
     "type": "git",
