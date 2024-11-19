@@ -23,6 +23,7 @@ export class JwtGuard extends AuthGuard('jwt') {
     ]);
 
     if (skipAuth) {
+      this.logger.warn('Checking jwt omitted!');
       return true;
     }
 

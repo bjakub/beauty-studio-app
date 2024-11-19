@@ -1,12 +1,4 @@
-import {
-  Controller,
-  HttpCode,
-  HttpStatus,
-  Post,
-  Req,
-  UseGuards,
-  UsePipes,
-} from '@nestjs/common';
+import { Controller, Post, Req, UseGuards, UsePipes } from '@nestjs/common';
 import { Request } from 'express';
 import { ZodValidationPipe } from '../../common/pipes/zod-validation/ZodValidation.pipe';
 import { LoginEmployeeSchema } from '@shared/dto/Auth';
@@ -20,7 +12,6 @@ import { AuthLoginAPI } from '@shared/modules/Auth';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @HttpCode(HttpStatus.OK)
   @Post('login')
   @UseGuards(LocalAuthGuard)
   @UsePipes(new ZodValidationPipe(LoginEmployeeSchema))

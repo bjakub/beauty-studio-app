@@ -1,9 +1,8 @@
-import type { Metadata } from "next";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
-import { ThemeProvider } from "@mui/material/styles";
-import { theme } from "@/config/theme";
-import CssBaseline from "@mui/material/CssBaseline";
 import { ReactNode } from "react";
+import CssBaseline from "@mui/material/CssBaseline";
+import { Metadata } from "next";
+
+import { SharedProviders } from "@/providers/shared";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,9 +18,7 @@ const RootLayout = ({ children }: RootLayoutProps) => (
     <CssBaseline />
 
     <body>
-      <AppRouterCacheProvider>
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
-      </AppRouterCacheProvider>
+      <SharedProviders>{children}</SharedProviders>
     </body>
   </html>
 );
