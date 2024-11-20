@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "This is beauty studio app",
   "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
     "server:watch": "npm run start:dev --prefix server",
     "frontend:watch": "npm run dev --prefix frontend"
   },
@@ -16,7 +18,10 @@
     "url": "https://github.com/bjakub/beauty-studio-app/issues"
   },
   "homepage": "https://github.com/bjakub/beauty-studio-app#readme",
-  "dependencies": {
-    "zod": "^3.23.8"
-  }
+  "packageManager": "npm@10.0.0",
+  "workspaces": [
+    "shared/*",
+    "frontend/*",
+    "server/*"
+  ]
 }
