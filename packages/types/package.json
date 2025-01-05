@@ -1,0 +1,17 @@
+{
+  "name": "@repo/types",
+  "version": "0.0.0",
+  "private": "true",
+  "exports": {
+    "./dto": "./dist/dto/index.js",
+    "./errors": "./dist/errors/index.js",
+    "./modules": "./dist/modules/index.js"
+  },
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc --build"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

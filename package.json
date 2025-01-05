@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "This is beauty studio app",
   "scripts": {
-    "dev": "turbo run dev",
-    "build": "turbo run build",
-    "server:watch": "npm run start:dev --prefix server",
-    "frontend:watch": "npm run dev --prefix frontend"
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "server:watch": "npm run start:dev --prefix apps/server",
+    "frontend:watch": "npm run dev --prefix apps/frontend"
   },
   "repository": {
     "type": "git",
@@ -18,10 +18,17 @@
     "url": "https://github.com/bjakub/beauty-studio-app/issues"
   },
   "homepage": "https://github.com/bjakub/beauty-studio-app#readme",
-  "packageManager": "npm@10.0.0",
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "turbo": "^2.3.0",
+    "typescript": "^5.6.3"
+  },
+  "packageManager": "npm@8.5.0",
   "workspaces": [
-    "shared/*",
-    "frontend/*",
-    "server/*"
-  ]
+    "apps/*",
+    "packages/*"
+  ],
+  "dependencies": {
+    "zod": "^3.23.8"
+  }
 }
