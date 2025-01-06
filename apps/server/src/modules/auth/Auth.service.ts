@@ -43,4 +43,14 @@ export class AuthService {
       accessToken: this.jwtService.sign(payload),
     };
   }
+
+  async verifyToken(token: string) {
+    try {
+      await this.jwtService.verifyAsync(token);
+      return { isValid: true };
+    } catch (error) {
+      this.logger.warn('Token expired or invalid');
+      return { isValid: false };
+    }
+  }
 }

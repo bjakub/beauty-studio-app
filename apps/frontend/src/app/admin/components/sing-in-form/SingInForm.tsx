@@ -1,15 +1,17 @@
 "use client";
 
 import { useActionState } from "react";
-import { Alert, Button, TextField } from "@mui/material";
-import { SignInHandler } from "@repo/types/modules";
+import { LoadingButton } from "@mui/lab";
+import { Alert, TextField } from "@mui/material";
+
+import { signIn } from "../../../../actions/auth";
 
 import { Container } from "@/app/admin/Admin.styled";
 import { TEXTS } from "@/app/admin/Admin.texts";
-import { signIn } from "@/app/lib/auth";
+import { SignInHandler } from "@/types/app/admin";
 
 export const SingInForm = () => {
-  const [state, action] = useActionState<SignInHandler, FormData>(signIn, { success: false });
+  const [state, action, isLoading] = useActionState<SignInHandler, FormData>(signIn, { success: false });
 
   return (
     <form action={action}>
@@ -33,13 +35,14 @@ export const SingInForm = () => {
           defaultValue={state.defaultValues?.password}
         />
 
-        <Button
+        <LoadingButton
           type="submit"
           variant="contained"
+          loading={isLoading}
           fullWidth
         >
           {TEXTS.BUTTON_LABEL}
-        </Button>
+        </LoadingButton>
 
         {state.message && <Alert severity={state.success ? "success" : "error"}>{state.message}</Alert>}
       </Container>

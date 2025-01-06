@@ -1,8 +1,9 @@
 import { ReactNode } from "react";
 import { Metadata } from "next";
 
+import { getAdminToken } from "../../actions/admin-token";
+
 import { SingInForm } from "@/app/admin/components/sing-in-form/SingInForm";
-import { getSession } from "@/app/lib/session";
 
 export const metadata: Metadata = {
   title: "Panel pracownika",
@@ -14,9 +15,9 @@ interface AdminLayoutProps {
 }
 
 export default async function AdminLayout({ children }: AdminLayoutProps) {
-  const session = await getSession();
+  const token = await getAdminToken();
 
-  if (!session) {
+  if (!token) {
     return <SingInForm />;
   }
 

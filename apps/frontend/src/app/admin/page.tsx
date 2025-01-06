@@ -10,5 +10,3 @@ export default function AdminPage() {
     </Container>
   );
 }
-
-// TODO: Przed rozpoczęciem tworzenia tej strony posprzątaj i ogarnij strukturę typów w packages oraz rozwiązac wszystkie inne TODOsy

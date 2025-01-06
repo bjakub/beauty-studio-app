@@ -5,7 +5,7 @@
   "exports": {
     "./dto": "./dist/dto/index.js",
     "./errors": "./dist/errors/index.js",
-    "./modules": "./dist/modules/index.js"
+    "./api": "./dist/api/index.js"
   },
   "scripts": {
     "dev": "tsc --watch",

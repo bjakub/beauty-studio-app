@@ -19,7 +19,7 @@ import {
 import { EmployeeService } from '../../database/repositories/employee/Employee.service';
 import { CryptoService } from '../../shared/services/crypto/Crypto.service';
 import { Roles } from '../../common/metadatas/Roles.metadata';
-import { GetAllEmployeesAPI, CreateEmployeeAPI } from '@repo/types/modules';
+import { GetAllEmployeesAPI, CreateEmployeeAPI } from '@repo/types/api';
 
 @Roles('OWNER')
 @Controller('employees')

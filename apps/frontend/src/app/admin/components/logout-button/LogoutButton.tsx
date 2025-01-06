@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 
-import { logout } from "@/app/lib/session";
+import { logoutAdmin } from "../../../../actions/admin-token";
 
 export const LogoutButton = () => {
-  return <Button onClick={logout}>Logout</Button>;
+  return <Button onClick={logoutAdmin}>Logout</Button>;
 };
