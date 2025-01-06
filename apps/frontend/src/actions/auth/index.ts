@@ -30,6 +30,6 @@ export const signIn = async (_state: SignInHandler, formData: FormData): Promise
 
     return { success: true };
   } catch (error) {
-    return { success: false, message: "An error occurred while signing in.", defaultValues };
+    return { success: false, message: "Błędne dane. Wpisz poprawne i zaloguj ponownie.", defaultValues };
   }
 };

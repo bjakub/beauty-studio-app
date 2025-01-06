@@ -4,13 +4,12 @@ import { useActionState } from "react";
 import { LoadingButton } from "@mui/lab";
 import { Alert, TextField } from "@mui/material";
 
-import { signIn } from "../../../../actions/auth";
-
+import { signIn } from "@/actions/auth";
 import { Container } from "@/app/admin/Admin.styled";
 import { TEXTS } from "@/app/admin/Admin.texts";
 import { SignInHandler } from "@/types/app/admin";
 
-export const SingInForm = () => {
+export const SignInForm = () => {
   const [state, action, isLoading] = useActionState<SignInHandler, FormData>(signIn, { success: false });
 
   return (
