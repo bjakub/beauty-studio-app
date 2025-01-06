@@ -10,3 +10,5 @@ export default function AdminPage() {
     </Container>
   );
 }
+
+// TODO: Zacznij budować widok admina
