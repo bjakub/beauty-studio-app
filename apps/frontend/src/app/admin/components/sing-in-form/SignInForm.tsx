@@ -1,50 +1,51 @@
 "use client";
 
 import { useActionState } from "react";
-import { LoadingButton } from "@mui/lab";
-import { Alert, TextField } from "@mui/material";
 
 import { signIn } from "@/actions/auth";
-import { Container } from "@/app/admin/Admin.styled";
 import { TEXTS } from "@/app/admin/Admin.texts";
+import { Button } from "@/components/forms/button";
+import { TextField } from "@/components/forms/text-field";
 import { SignInHandler } from "@/types/app/admin";
 
 export const SignInForm = () => {
-  const [state, action, isLoading] = useActionState<SignInHandler, FormData>(signIn, { success: false });
+  const [state, action, _isLoading] = useActionState<SignInHandler, FormData>(signIn, { success: false });
 
   return (
-    <form action={action}>
-      <Container>
+    <form
+      action={action}
+      className="flex flex-col justify-center items-center h-screen"
+    >
+      <div className="p-8 flex flex-col gap-y-4 w-1/4 min-w-80 justify-center items-center border-2 border-secondary">
         <TextField
           label={TEXTS.USERNAME_LABEL}
-          fullWidth
-          name="username"
-          error={!!state.errors?.username}
-          helperText={state.errors?.username}
+          placeholder={TEXTS.USERNAME_PLACEHOLDER}
           defaultValue={state.defaultValues?.username}
+          name="username"
+          error={state.errors?.username}
         />
 
         <TextField
           label={TEXTS.PASSWORD_LABEL}
-          fullWidth
+          placeholder={TEXTS.PASSWORD_PLACEHOLDER}
+          defaultValue={state.defaultValues?.password}
           name="password"
           type="password"
-          error={!!state.errors?.password}
-          helperText={state.errors?.password}
-          defaultValue={state.defaultValues?.password}
+          error={state.errors?.password}
         />
 
-        <LoadingButton
-          type="submit"
-          variant="contained"
-          loading={isLoading}
-          fullWidth
-        >
-          {TEXTS.BUTTON_LABEL}
-        </LoadingButton>
+        <Button>{TEXTS.BUTTON_LABEL}</Button>
+      </div>
 
-        {state.message && <Alert severity={state.success ? "success" : "error"}>{state.message}</Alert>}
-      </Container>
+      {/* {state.message && ( */}
+      {/*   <Alert */}
+      {/*     severity={state.success ? "success" : "error"} */}
+      {/*     text={state.message} */}
+      {/*   /> */}
+      {/* )} */}
     </form>
   );
 };
+
+// TODO: Dodaj tosta zamiast alertu i zrób ładowanie przycisku
+// TODO: Zacznin robić widoki dla admina

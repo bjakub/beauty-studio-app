@@ -1,5 +1,6 @@
+import "./globals.css";
+
 import { ReactNode } from "react";
-import CssBaseline from "@mui/material/CssBaseline";
 import { Metadata } from "next";
 
 import { SharedProviders } from "@/providers/shared";
@@ -15,8 +16,6 @@ interface RootLayoutProps {
 
 const RootLayout = ({ children }: RootLayoutProps) => (
   <html lang="en">
-    <CssBaseline />
-
     <body>
       <SharedProviders>{children}</SharedProviders>
     </body>
