@@ -3,7 +3,6 @@ import { LogoutButton } from "@/app/admin/components/logout-button/LogoutButton"
 
 export default function AdminPage() {
   return (
-    // TODO
     <div>
       <h1>{TEXTS.HEADING}</h1>
       <LogoutButton />

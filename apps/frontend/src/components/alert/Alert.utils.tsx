@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { AlertProps } from "@/components/forms/alert/Alert";
+import { AlertProps } from "./Alert";
 
 export const getAlertIcon = (severity: AlertProps["severity"]): ReactNode => {
   switch (severity) {

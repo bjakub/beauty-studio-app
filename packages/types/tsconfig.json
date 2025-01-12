@@ -18,5 +18,5 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
   },
-  "include": ["dto/**/*", "errors/**/*", "modules/**/*"],
+  "include": ["dto/**/*", "errors/**/*", "api/**/*"],
 }

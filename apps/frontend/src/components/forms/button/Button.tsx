@@ -1,13 +1,15 @@
 interface ButtonProps {
-  children: string;
+  text: string;
+  isLoading?: boolean;
   type?: HTMLButtonElement["type"];
 }
 
-export const Button = ({ children, type }: ButtonProps) => (
+export const Button = ({ text, isLoading, type }: ButtonProps) => (
   <button
     className="btn btn-primary rounded-none w-full"
+    disabled={isLoading}
     type={type ?? "submit"}
   >
-    {children}
+    {isLoading ? <span className="loading loading-spinner disabled" /> : text}
   </button>
 );

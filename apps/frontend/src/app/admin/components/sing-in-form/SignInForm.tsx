@@ -6,10 +6,11 @@ import { signIn } from "@/actions/auth";
 import { TEXTS } from "@/app/admin/Admin.texts";
 import { Button } from "@/components/forms/button";
 import { TextField } from "@/components/forms/text-field";
+import { Toast } from "@/components/toast";
 import { SignInHandler } from "@/types/app/admin";
 
 export const SignInForm = () => {
-  const [state, action, _isLoading] = useActionState<SignInHandler, FormData>(signIn, { success: false });
+  const [state, action, isLoading] = useActionState<SignInHandler, FormData>(signIn, { success: false });
 
   return (
     <form
@@ -34,18 +35,22 @@ export const SignInForm = () => {
           error={state.errors?.password}
         />
 
-        <Button>{TEXTS.BUTTON_LABEL}</Button>
+        <Button
+          text={TEXTS.BUTTON_LABEL}
+          isLoading={isLoading}
+        />
       </div>
 
-      {/* {state.message && ( */}
-      {/*   <Alert */}
-      {/*     severity={state.success ? "success" : "error"} */}
-      {/*     text={state.message} */}
-      {/*   /> */}
-      {/* )} */}
+      {state.message && (
+        <Toast
+          key={isLoading + JSON.stringify(state)}
+          severity={state.success ? "success" : "error"}
+          text={state.message}
+        />
+      )}
     </form>
   );
 };
 
-// TODO: Dodaj tosta zamiast alertu i zrób ładowanie przycisku
+// TODO Spróbuj powalczyć z tym tostem jeszcze, ale bez przesady
 // TODO: Zacznin robić widoki dla admina

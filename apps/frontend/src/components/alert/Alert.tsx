@@ -1,21 +1,41 @@
-import { AlertSeverityClassnameMap, getAlertIcon } from "@/components/forms/alert/Alert.utils";
+import { AlertSeverityClassnameMap, getAlertIcon } from "./Alert.utils";
 
 export interface AlertProps {
   severity: "success" | "error" | "warning" | "info";
   text: string;
+  onClose?: () => void;
 }
 
-export const Alert = ({ severity, text }: AlertProps) => {
+export const Alert = ({ severity, text, onClose }: AlertProps) => {
   const icon = getAlertIcon(severity);
 
   return (
     <div
       role="alert"
-      className={`alert ${AlertSeverityClassnameMap[severity]}`}
+      className={`alert ${AlertSeverityClassnameMap[severity]} transition-opacity`}
     >
       {icon}
 
       <span>{text}</span>
+
+      {onClose && (
+        <div onClick={onClose}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </div>
+      )}
     </div>
   );
 };
