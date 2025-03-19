@@ -4,9 +4,9 @@ import { useActionState } from "react";
 
 import { signIn } from "@/actions/auth";
 import { TEXTS } from "@/app/admin/Admin.texts";
+import { Alert } from "@/components/alert";
 import { Button } from "@/components/forms/button";
 import { TextField } from "@/components/forms/text-field";
-import { Toast } from "@/components/toast";
 import { SignInHandler } from "@/types/app/admin";
 
 export const SignInForm = () => {
@@ -36,21 +36,20 @@ export const SignInForm = () => {
         />
 
         <Button
+          type="submit"
           text={TEXTS.BUTTON_LABEL}
           isLoading={isLoading}
         />
-      </div>
 
-      {state.message && (
-        <Toast
-          key={isLoading + JSON.stringify(state)}
-          severity={state.success ? "success" : "error"}
-          text={state.message}
-        />
-      )}
+        {state.message && (
+          <Alert
+            severity={state.success ? "success" : "error"}
+            text={state.message}
+          />
+        )}
+      </div>
     </form>
   );
 };
 
-// TODO Spróbuj powalczyć z tym tostem jeszcze, ale bez przesady
-// TODO: Zacznin robić widoki dla admina
+// TODO: Zacznij robić widoki dla admina

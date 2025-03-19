@@ -5,6 +5,7 @@ export default function AdminPage() {
   return (
     <div>
       <h1>{TEXTS.HEADING}</h1>
+
       <LogoutButton />
     </div>
   );

@@ -9,13 +9,13 @@ const COOKIE_NAME = "ADMIN_TOKEN";
 
 export const setAdminToken = async (jwt: string) => {
   const cookieStore = await cookies();
+
   cookieStore.set(COOKIE_NAME, jwt, { path: "/admin", httpOnly: true, sameSite: "lax", secure: true });
 };
 
 export const getAdminToken = async () => {
   try {
     const cookieStore = await cookies();
-
     const token = cookieStore.get(COOKIE_NAME)?.value;
 
     if (token) {
@@ -26,6 +26,7 @@ export const getAdminToken = async () => {
       }
     }
   } catch (error) {
+    console.error(error);
     return undefined;
   }
 };

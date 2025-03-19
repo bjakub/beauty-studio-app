@@ -26,6 +26,7 @@ export const signIn = async (_state: SignInHandler, formData: FormData): Promise
     }
 
     const { accessToken } = await EmployeeAuthService.login(username, password);
+
     await setAdminToken(accessToken);
 
     return { success: true };

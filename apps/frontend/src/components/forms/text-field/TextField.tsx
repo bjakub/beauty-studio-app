@@ -13,6 +13,7 @@ export const TextField = ({ name, placeholder, label, defaultValue, error, type 
       <div className="label pt-0">
         <span className="label-text">{label}</span>
       </div>
+
       <input
         type={type ?? "text"}
         placeholder={placeholder}
@@ -21,6 +22,7 @@ export const TextField = ({ name, placeholder, label, defaultValue, error, type 
         aria-invalid="true"
         className="input w-full input-md input-primary rounded-none border-2 focus:outline-0 invalid:border-green-500"
       />
+
       {error && (
         <div className="label">
           <span className="label-text text-error text-xs">{error}</span>
